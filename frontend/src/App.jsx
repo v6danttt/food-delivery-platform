@@ -1,8 +1,10 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+ BrowserRouter,
+ Routes,
+ Route
+}
+from
+"react-router-dom";
 
 import Home
 from "./pages/Home";
@@ -10,52 +12,68 @@ from "./pages/Home";
 import Login
 from "./pages/Login";
 
-
 import Register
 from "./pages/Register";
 
 import Restaurants
-from "./pages/Restaurant";
+from "./pages/Restaurants";
+
+import RestaurantDetails
+from "./pages/RestaurantDetails";
 
 import Navbar
 from "./components/Navbar";
 
+import ProtectedRoute
+from "./components/Protectedroute";
+
 function App() {
 
-  return (
+ return (
 
-    <BrowserRouter>
+ <BrowserRouter>
 
-      <Navbar />
+ <Navbar />
 
-      <Routes>
+ <Routes>
 
-        <Route
-          path="/"
-          element={<Home />}
-        />
+ <Route
+ path="/"
+ element={<Home />}
+ />
 
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+ <Route
+ path="/login"
+ element={<Login />}
+ />
 
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+ <Route
+ path="/register"
+ element={<Register />}
+ />
 
-        <Route
-          path="/restaurants"
-          element={
-            <Restaurants />
-          }
-        />
+ <Route
+ path="/restaurants"
+ element={
+ <ProtectedRoute>
 
-      </Routes>
+ <Restaurants />
 
-    </BrowserRouter>
-  );
+ </ProtectedRoute>
+ }
+ />
+
+ <Route
+ path="/restaurant/:id"
+ element={
+ <RestaurantDetails />
+ }
+ />
+
+ </Routes>
+
+ </BrowserRouter>
+ );
 }
 
 export default App;
