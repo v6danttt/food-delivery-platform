@@ -1,0 +1,20 @@
+const express = require('express');
+const router = express.Router();
+const {
+    createRestaurant,
+    getRestaurants,
+    getRestaurantById,
+    updateRestaurant,
+    deleteRestaurant
+} = require('../controllers/restaurantController');
+
+router.route('/')
+    .get(getRestaurants)
+    .post(createRestaurant);
+
+router.route('/:id')
+    .get(getRestaurantById)
+    .put(updateRestaurant)
+    .delete(deleteRestaurant);
+
+module.exports = router;
