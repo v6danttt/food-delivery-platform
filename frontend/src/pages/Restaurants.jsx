@@ -35,20 +35,25 @@ function Restaurants() {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <div>
-      <h1>Restaurants</h1>
+    <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="text-4xl font-bold text-slate-900 mb-8">Restaurants</h1>
 
-      <input
-        type="text"
-        placeholder="Search Restaurant"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Search Restaurant"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full mb-8 px-4 py-3 rounded-lg border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900"
+        />
 
-      {filteredRestaurants.map((restaurant) => (
-        <RestaurantCard key={restaurant._id} restaurant={restaurant} />
-      ))}
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredRestaurants.map((restaurant) => (
+            <RestaurantCard key={restaurant._id} restaurant={restaurant} />
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
 

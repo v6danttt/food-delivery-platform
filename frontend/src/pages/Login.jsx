@@ -21,10 +21,12 @@ function Login() {
 
       alert("Login Successful");
 
-      window.location.href = "/";
+      window.location.href = "/restaurants";
 
     } catch (error) {
-      alert("Login Failed");
+      const msg = error.response?.data?.message || error.response?.data?.error || error.message || 'Login Failed';
+      alert(`Login Failed: ${msg}`);
+      console.error('Login error:', error);
     }
   };
 
