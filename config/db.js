@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
+        // We use an in-memory MongoDB instance to ensure the project works perfectly 
+        // without you needing to install or start a local MongoDB service.
+        const mongoServer = await MongoMemoryServer.create();
+        const mongoUri = mongoServer.getUri();
+        
+        const conn = await mongoose.connect(mongoUri);
+        console.log(`MongoDB Connected: ${conn.connection.host} (In-Memory Database)`);
     } catch (error) {
         console.error(`Error: ${error.message}`);
         process.exit(1);
